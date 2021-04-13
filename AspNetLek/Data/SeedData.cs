@@ -30,7 +30,7 @@ namespace AspNetLek.Data
             {
                 Title = "Kaffe häng",
                 Description = "Kaffe för den som gillar",
-                Place = "Halmstad",
+                Place = "Brokvarn",
                 Adress = "kaffegatan 3",
                 Date = DateTime.Parse("2021-06-22"),
             });
@@ -38,9 +38,33 @@ namespace AspNetLek.Data
             {
                 Title = "Lakrisfabriken",
                 Description = "Lakris för den som gillar",
-                Place = "Halmstad",
+                Place = "Malmö",
                 Adress = "Lakrisgatan 33",
                 Date = DateTime.Parse("2021-08-01"),
+            });
+            context.Event.Add(new Event
+            {
+                Title = "Star Wars",
+                Description = "Star Wars maraton",
+                Place = "Göteborg",
+                Adress = "Star Wars vägen 18",
+                Date = DateTime.Parse("2021-11-14"),
+            });
+            context.Event.Add(new Event
+            {
+                Title = "Snushörnan",
+                Description = "Kom och hämta gratis snus",
+                Place = "Nykvarn",
+                Adress = "Snusarevägen 493",
+                Date = DateTime.Parse("2023-02-01"),
+            });
+            context.Event.Add(new Event
+            {
+                Title = "Musik fest",
+                Description = "För dig som vill festa lite med musik",
+                Place = "Älmhult",
+                Adress = "Hultarevägen 20",
+                Date = DateTime.Parse("2022-01-01"),
             });
             context.SaveChanges();
         }

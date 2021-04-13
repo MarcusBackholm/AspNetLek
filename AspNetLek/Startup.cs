@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.DependencyInjection;
@@ -27,7 +26,7 @@ namespace AspNetLek
             services.AddDbContext<AspNetLekContext>(options =>
                     options.UseSqlServer(Configuration.GetConnectionString("AspNetLekContext")));
 
-            services.AddDefaultIdentity<IdentityUser>().AddEntityFrameworkStores<AspNetLekContext>();
+            //services.AddDefaultIdentity<IdentityUser>().AddEntityFrameworkStores<AspNetLekContext>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
