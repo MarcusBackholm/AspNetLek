@@ -1,5 +1,5 @@
 ﻿@page
-@model AspNetLek.Pages.Events.MyEventModel
+@model AspNetLek.Pages.MyEvents.IndexModel
 
 @{
     ViewData["Title"] = "Index";
@@ -28,6 +28,7 @@
             <th>
                 @Html.DisplayNameFor(model => model.AttendeeEvent[0].Event.Date)
             </th>
+            <th></th>
         </tr>
     </thead>
     <tbody>
@@ -49,9 +50,7 @@
                 @Html.DisplayFor(modelItem => item.Event.Date)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Event.Organizer.OrganizerName)
-            </td>
-            <td>
+                <a asp-page="./Edit" asp-route-id="@item.ID">Edit</a> |
                 <a asp-page="./Details" asp-route-id="@item.ID">Details</a> |
                 <a asp-page="./Delete" asp-route-id="@item.ID">Delete</a>
             </td>
