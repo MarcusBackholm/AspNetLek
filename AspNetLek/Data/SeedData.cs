@@ -1,5 +1,6 @@
 ﻿using System;
 using AspNetLek.Models;
+using System.Linq;
 
 namespace AspNetLek.Data
 {
@@ -9,6 +10,12 @@ namespace AspNetLek.Data
         {
             context.Attendee.RemoveRange(context.Attendee);
             context.Event.RemoveRange(context.Event);
+
+            // Look for any Attendee.
+            if (context.Attendee.Any())
+            {
+                return; // DB has been seeded
+            }
 
             context.Attendee.Add(new Attendee
             {
