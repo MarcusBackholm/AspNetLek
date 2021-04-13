@@ -1,9 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using Microsoft.Extensions.DependencyInjection;
-using System.Threading.Tasks;
-using AspNetLek.Data;
 using AspNetLek.Models;
 
 namespace AspNetLek.Data

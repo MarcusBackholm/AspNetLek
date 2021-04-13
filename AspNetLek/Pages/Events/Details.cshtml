@@ -44,6 +44,7 @@
     </dl>
 </div>
 <div>
-    <a asp-page="/MyEvents/Create" asp-route-id="@Model.Event.ID">Join</a>
+    <a asp-page="/MyEvents/Create" asp-route-id="@Model.Event.ID">Join This Event</a>
+    <a asp-page="./Edit" asp-route-id="@Model.Event.ID">Edit</a>
     <a asp-page="./Index">Back to List</a>
 </div>
