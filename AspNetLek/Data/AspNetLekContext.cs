@@ -18,6 +18,6 @@ namespace AspNetLek.Data
         public DbSet<AspNetLek.Models.Attendee> Attendee { get; set; }
         public DbSet<AspNetLek.Models.AttendeeEvent> AttendeeEvent { get; set; }
         public DbSet<AspNetLek.Models.Event> Event { get; set; }
-        public DbSet<AspNetLek.Models.Organizer> Organizers { get; set; }
+        public DbSet<AspNetLek.Models.Organizer> Organizer { get; set; }
     }
 }
