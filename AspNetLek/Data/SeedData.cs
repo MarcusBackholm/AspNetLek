@@ -10,7 +10,7 @@ namespace AspNetLek.Data
 {
     public class SeedData
     {
-        public static void Seeding(AspNetLekContext context)
+        public static void SeedingData(AspNetLekContext context)
         {
             context.Attendee.RemoveRange(context.Attendee);
             context.Event.RemoveRange(context.Event);
