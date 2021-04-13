@@ -15,7 +15,6 @@ namespace AspNetLek.Models
         public string Place { get; set; }
         public string Adress { get; set; }
         public DateTime Date { get; set; }
-        public bool TicketsAvailable { get; set; }
         public Organizer Organizer { get; set; }
         public ICollection<AttendeeEvent> AttendeeEvents { get; set; }
     }
