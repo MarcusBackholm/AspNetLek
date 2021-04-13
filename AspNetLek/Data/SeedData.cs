@@ -17,7 +17,7 @@ namespace AspNetLek.Data
 
             context.Attendee.Add(new Attendee
             {
-                ID = 1324,
+                ID = 1,
                 UserName = "Bjorn",
                 Email = "bjornstromberg@codic.se",
                 PhoneNumber = "073-423 93 44"
