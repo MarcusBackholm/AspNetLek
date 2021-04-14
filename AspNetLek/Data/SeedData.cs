@@ -1,7 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.DependencyInjection;
-using AspNetLek.Data;
-using System;
+﻿using System;
 using AspNetLek.Models;
 using System.Linq;
 
@@ -11,8 +8,10 @@ namespace AspNetLek.Data
     {
         public static void SeedingData(AspNetLekContext context)
         {
-            context.Attendee.RemoveRange(context.Attendee);
+            context.AttendeeEvent.RemoveRange(context.AttendeeEvent);
             context.Event.RemoveRange(context.Event);
+            context.Attendee.RemoveRange(context.Attendee);
+            context.SaveChanges();
 
             // Look for any Attendee.
             if (context.Attendee.Any())
@@ -31,7 +30,7 @@ namespace AspNetLek.Data
             context.Event.Add(new Event
             {
                 Title = "Marcus",
-                Description = "Bästa killen",
+                Description = "Häng med bästa Bästa killen",
                 Place = "Halmstad",
                 Adress = "Gamletullsgatan 10",
                 Date = DateTime.Parse("2021-04-13"),

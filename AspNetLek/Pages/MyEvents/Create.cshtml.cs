@@ -16,17 +16,10 @@ namespace AspNetLek.Pages.MyEvents
             _context = context;
         }
 
-        public async Task<IActionResult> OnGetAsync(int? id)
+        public IActionResult OnGet()
         {
-            AttendeeEvent joinedEvent = new AttendeeEvent()
-            {
-                Attendee = await _context.Attendee.Where(a => a.ID == 1).FirstOrDefaultAsync(),
-                Event = await _context.Event.Where(e => e.ID == id).FirstOrDefaultAsync()
-            };
-            _context.AttendeeEvent.Add(joinedEvent);
-            await _context.SaveChangesAsync();
+            return Page();
 
-            return RedirectToPage("../Events/Details", new { id });
         }
 
         [BindProperty]

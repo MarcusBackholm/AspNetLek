@@ -29,6 +29,7 @@ namespace AspNetLek
                     logger.LogError(ex, "Ett fel har inträffat vid inläsning av DB");
                 }
             }
+
             host.Run();
         }
 

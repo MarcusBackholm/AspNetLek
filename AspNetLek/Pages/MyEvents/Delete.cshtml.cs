@@ -25,13 +25,10 @@ namespace AspNetLek.Pages.MyEvents
                 return NotFound();
             }
 
-            Event = await _context.Event.FirstOrDefaultAsync(m => m.ID == id);
-
-            if (Event == null)
-            {
-                return NotFound();
-            }
-            return Page();
+            var e = await _context.AttendeeEvent.FirstOrDefaultAsync(m => m.ID == id);
+            _context.AttendeeEvent.Remove(e);
+            _context.SaveChanges();
+            return RedirectToPage("/MyEvents/Index");
         }
 
         public async Task<IActionResult> OnPostAsync(int? id)

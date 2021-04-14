@@ -1,8 +1,9 @@
-﻿using System.Threading.Tasks;
+﻿using System.Linq;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.EntityFrameworkCore;
 using AspNetLek.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace AspNetLek.Pages.Events
 {
@@ -31,6 +32,19 @@ namespace AspNetLek.Pages.Events
                 return NotFound();
             }
             return Page();
+        }
+
+        public async Task<IActionResult> OnPostAsync(int? id)
+        {
+            AttendeeEvent joinedEvent = new AttendeeEvent()
+            {
+                Attendee = await _context.Attendee.Where(a => a.ID == 1).FirstOrDefaultAsync(),
+                Event = await _context.Event.Where(e => e.ID == id).FirstOrDefaultAsync()
+            };
+
+            _context.AttendeeEvent.Add(joinedEvent);
+            await _context.SaveChangesAsync();
+            return RedirectToPage("/Events/Index");
         }
     }
 }
