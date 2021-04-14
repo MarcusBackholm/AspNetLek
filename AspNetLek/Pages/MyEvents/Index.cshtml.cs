@@ -20,7 +20,10 @@ namespace AspNetLek.Pages.MyEvents
 
         public async Task OnGetAsync()
         {
-            AttendeeEvent = await _context.AttendeeEvent.Include(e => e.Event).ThenInclude(o => o.Organizer).Where(ae => ae.Attendee.ID == 1).ToListAsync();
+            AttendeeEvent = await _context.AttendeeEvent
+                .Include(e => e.Event)
+                .ThenInclude(o => o.Organizer)
+                .Where(a => a.Attendee.ID == 1).ToListAsync();
         }
     }
 }
