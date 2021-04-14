@@ -1,4 +1,7 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
+using AspNetLek.Data;
+using System;
 using AspNetLek.Models;
 using System.Linq;
 
