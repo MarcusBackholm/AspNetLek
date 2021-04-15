@@ -6,42 +6,39 @@
 
 <h1>You successfully joined this event!</h1>
 <hr />
-<div class="row">
-    <div class="col-md-4">
-        <form method="post">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="Event.ID" />
-            <div class="form-group">
-                <label asp-for="Event.Title" class="control-label"></label>
-                <input asp-for="Event.Title" class="form-control" />
-                <span asp-validation-for="Event.Description" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Event.Description" class="control-label"></label>
-                <input asp-for="Event.Description" class="form-control" />
-                <span asp-validation-for="Event.Description" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Event.Place" class="control-label"></label>
-                <input asp-for="Event.Place" class="form-control" />
-                <span asp-validation-for="Event.Place" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Event.Adress" class="control-label"></label>
-                <input asp-for="Event.Adress" class="form-control" />
-                <span asp-validation-for="Event.Description" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Event.Date" class="control-label"></label>
-                <input asp-for="Event.Date" class="form-control" />
-                <span asp-validation-for="Event.Date" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Join" class="btn btn-primary" />
-            </div>
-            <h3>@Model.Message</h3>
-        </form>
-    </div>
+<div>
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Event.Title)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Event.Title)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Event.Description)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Event.Description)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Event.Place)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Event.Place)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Event.Adress)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Event.Adress)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Event.Date)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Event.Date)
+        </dd>
+    </dl>
 </div>
 
 <div>

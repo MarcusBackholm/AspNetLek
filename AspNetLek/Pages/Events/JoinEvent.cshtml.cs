@@ -31,7 +31,7 @@ namespace AspNetLek.Pages.Events
                 return NotFound();
             }
 
-            Event = await _context.Event.FirstOrDefaultAsync(m => m.ID == id);
+            Event = await _context.Event.FirstOrDefaultAsync(m => m.ID == id); // Här ifrån blir det fel.
 
             if (Event == null)
             {
@@ -55,12 +55,14 @@ namespace AspNetLek.Pages.Events
             AttendeeEvent joinedEvent = new AttendeeEvent()
             {
                 Attendee = await _context.Attendee.Where(a => a.ID == 1)
-                .Include(e => e.AttendeeEvents).FirstOrDefaultAsync(),
+                .Include(e => e.AttendeeEvents)
+                .FirstOrDefaultAsync(),
                 Event = await _context.Event.Where(e => e.ID == id).FirstOrDefaultAsync()
             };
             _context.AttendeeEvent.Add(joinedEvent);
             await _context.SaveChangesAsync();
             return RedirectToPage("/Events/Index");
         }
+
     }
 }
