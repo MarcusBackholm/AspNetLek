@@ -1,23 +1,28 @@
-﻿using System.Linq;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using AspNetLek.Models;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using AspNetLek.Data;
+using AspNetLek.Models;
 
 namespace AspNetLek.Pages.Events
 {
-    public class DetailsModel : PageModel
+    public class JoinEventsModel : PageModel
     {
         private readonly AspNetLek.Data.AspNetLekContext _context;
-
-        public DetailsModel(AspNetLek.Data.AspNetLekContext context)
+        
+        public JoinEventsModel(AspNetLek.Data.AspNetLekContext context)
         {
             _context = context;
         }
+
         [BindProperty]
-        public bool AttendeeIsJoining { get; set; }
         public Event Event { get; set; }
+        public string Message { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
@@ -26,17 +31,7 @@ namespace AspNetLek.Pages.Events
                 return NotFound();
             }
 
-            Event = await _context.Event
-                .Include(e => e.Organizer)
-                .FirstOrDefaultAsync(m => m.ID == id);
-
-            AttendeeEvent attendeeEvent = await _context.AttendeeEvent
-                .Where(a => a.Attendee.ID == 1 && a.Event == Event)
-                .FirstOrDefaultAsync();
-            if (attendeeEvent != null)
-            {
-                AttendeeIsJoining = true;
-            }
+            Event = await _context.Event.FirstOrDefaultAsync(m => m.ID == id);
 
             if (Event == null)
             {
@@ -46,12 +41,23 @@ namespace AspNetLek.Pages.Events
         }
         public async Task<IActionResult> OnPostAsync(int? id)
         {
+            Message = "See you at the event!";
+
+            if (!ModelState.IsValid)
+            {
+                return Page();
+            }
+            if (id == null)
+            {
+                return NotFound();
+            }
+
             AttendeeEvent joinedEvent = new AttendeeEvent()
             {
-                Attendee = await _context.Attendee.Where(a => a.ID == 1).FirstOrDefaultAsync(),
+                Attendee = await _context.Attendee.Where(a => a.ID == 1)
+                .Include(e => e.AttendeeEvents).FirstOrDefaultAsync(),
                 Event = await _context.Event.Where(e => e.ID == id).FirstOrDefaultAsync()
             };
-
             _context.AttendeeEvent.Add(joinedEvent);
             await _context.SaveChangesAsync();
             return RedirectToPage("/Events/Index");
