@@ -24,7 +24,7 @@ namespace AspNetLek.Pages.MyEvents
             {
                 return NotFound();
             }
-
+            // Tar bort events man deltagit i. 
             var e = await _context.AttendeeEvent.FirstOrDefaultAsync(m => m.ID == id);
             _context.AttendeeEvent.Remove(e);
             _context.SaveChanges();
