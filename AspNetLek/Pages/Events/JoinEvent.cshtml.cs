@@ -57,9 +57,12 @@ namespace AspNetLek.Pages.Events
                 .FirstOrDefaultAsync(),
                 Event = await _context.Event.Where(e => e.ID == id).FirstOrDefaultAsync()
             };
-            _context.AttendeeEvent.Add(joinedEvent);
-            await _context.SaveChangesAsync();
-            return RedirectToPage("/Events/Index");
+
+            return Page();
+
+           //_context.AttendeeEvent.Add(joinedEvent);
+           //await _context.SaveChangesAsync();
+           //return RedirectToPage("/Events/Index"); // Ändra
         }
 
     }
