@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace AspNetLek.Migrations
 {
-    public partial class initialcreate : Migration
+    public partial class one : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -64,37 +64,30 @@ namespace AspNetLek.Migrations
                 name: "AttendeeEvent",
                 columns: table => new
                 {
-                    ID = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    AttendeeID = table.Column<int>(type: "int", nullable: false),
-                    EventID = table.Column<int>(type: "int", nullable: true)
+                    AttendeesID = table.Column<int>(type: "int", nullable: false),
+                    JoinedEventsID = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_AttendeeEvent", x => x.ID);
+                    table.PrimaryKey("PK_AttendeeEvent", x => new { x.AttendeesID, x.JoinedEventsID });
                     table.ForeignKey(
-                        name: "FK_AttendeeEvent_Attendee_AttendeeID",
-                        column: x => x.AttendeeID,
+                        name: "FK_AttendeeEvent_Attendee_AttendeesID",
+                        column: x => x.AttendeesID,
                         principalTable: "Attendee",
                         principalColumn: "ID",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_AttendeeEvent_Event_EventID",
-                        column: x => x.EventID,
+                        name: "FK_AttendeeEvent_Event_JoinedEventsID",
+                        column: x => x.JoinedEventsID,
                         principalTable: "Event",
                         principalColumn: "ID",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_AttendeeEvent_AttendeeID",
+                name: "IX_AttendeeEvent_JoinedEventsID",
                 table: "AttendeeEvent",
-                column: "AttendeeID");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_AttendeeEvent_EventID",
-                table: "AttendeeEvent",
-                column: "EventID");
+                column: "JoinedEventsID");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Event_OrganizerID",

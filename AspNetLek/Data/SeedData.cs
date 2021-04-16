@@ -8,10 +8,9 @@ namespace AspNetLek.Data
     {
         public static void SeedingData(AspNetLekContext context)
         {
-            context.AttendeeEvent.RemoveRange(context.AttendeeEvent);
-            context.Event.RemoveRange(context.Event);
-            context.Attendee.RemoveRange(context.Attendee);
-            context.SaveChanges();
+            //context.Event.RemoveRange(context.Event);
+            //context.Attendee.RemoveRange(context.Attendee);
+            //context.SaveChanges();
 
             // Look for any Attendee.
             if (context.Attendee.Any())

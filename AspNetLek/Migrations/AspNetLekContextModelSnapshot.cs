@@ -38,28 +38,6 @@ namespace AspNetLek.Migrations
                     b.ToTable("Attendee");
                 });
 
-            modelBuilder.Entity("AspNetLek.Models.AttendeeEvent", b =>
-                {
-                    b.Property<int>("ID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("AttendeeID")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("EventID")
-                        .HasColumnType("int");
-
-                    b.HasKey("ID");
-
-                    b.HasIndex("AttendeeID");
-
-                    b.HasIndex("EventID");
-
-                    b.ToTable("AttendeeEvent");
-                });
-
             modelBuilder.Entity("AspNetLek.Models.Event", b =>
                 {
                     b.Property<int>("ID")
@@ -115,21 +93,19 @@ namespace AspNetLek.Migrations
                     b.ToTable("Organizer");
                 });
 
-            modelBuilder.Entity("AspNetLek.Models.AttendeeEvent", b =>
+            modelBuilder.Entity("AttendeeEvent", b =>
                 {
-                    b.HasOne("AspNetLek.Models.Attendee", "Attendee")
-                        .WithMany("AttendeeEvents")
-                        .HasForeignKey("AttendeeID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                    b.Property<int>("AttendeesID")
+                        .HasColumnType("int");
 
-                    b.HasOne("AspNetLek.Models.Event", "Event")
-                        .WithMany("AttendeeEvents")
-                        .HasForeignKey("EventID");
+                    b.Property<int>("JoinedEventsID")
+                        .HasColumnType("int");
 
-                    b.Navigation("Attendee");
+                    b.HasKey("AttendeesID", "JoinedEventsID");
 
-                    b.Navigation("Event");
+                    b.HasIndex("JoinedEventsID");
+
+                    b.ToTable("AttendeeEvent");
                 });
 
             modelBuilder.Entity("AspNetLek.Models.Event", b =>
@@ -141,14 +117,19 @@ namespace AspNetLek.Migrations
                     b.Navigation("Organizer");
                 });
 
-            modelBuilder.Entity("AspNetLek.Models.Attendee", b =>
+            modelBuilder.Entity("AttendeeEvent", b =>
                 {
-                    b.Navigation("AttendeeEvents");
-                });
+                    b.HasOne("AspNetLek.Models.Attendee", null)
+                        .WithMany()
+                        .HasForeignKey("AttendeesID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-            modelBuilder.Entity("AspNetLek.Models.Event", b =>
-                {
-                    b.Navigation("AttendeeEvents");
+                    b.HasOne("AspNetLek.Models.Event", null)
+                        .WithMany()
+                        .HasForeignKey("JoinedEventsID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("AspNetLek.Models.Organizer", b =>

@@ -1,16 +1,20 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
+using AspNetLek.Data;
 using AspNetLek.Models;
 
-namespace AspNetLek.Pages.Events
+namespace AspNetLek.Pages
 {
-    public class IndexModel : PageModel
+    public class EventModel : PageModel
     {
         private readonly AspNetLek.Data.AspNetLekContext _context;
 
-        public IndexModel(AspNetLek.Data.AspNetLekContext context)
+        public EventModel(AspNetLek.Data.AspNetLekContext context)
         {
             _context = context;
         }
@@ -19,7 +23,7 @@ namespace AspNetLek.Pages.Events
 
         public async Task OnGetAsync()
         {
-            Event = await _context.Event.Include(o => o.Organizer).ToListAsync();
+            Event = await _context.Event.ToListAsync();
         }
     }
 }

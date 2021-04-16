@@ -1,0 +1,50 @@
+﻿@page
+@model AspNetLek.Pages.MyEventsModel
+
+@{
+    ViewData["Title"] = "MyEvents";
+}
+
+<h1>MyEvents</h1>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Event[0].Title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Event[0].Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Event[0].Place)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Event[0].Adress)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Event[0].Date)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Event) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Place)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Adress)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Date)
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

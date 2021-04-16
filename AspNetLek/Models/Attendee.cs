@@ -10,6 +10,7 @@ namespace AspNetLek.Models
         public string UserName { get; set; }
         public string Email { get; set; }
         public string PhoneNumber { get; set; }
-        public ICollection<AttendeeEvent> AttendeeEvents { get; set; }
+        public IList<Event> JoinedEvents { get; set; }
+
     }
 }
