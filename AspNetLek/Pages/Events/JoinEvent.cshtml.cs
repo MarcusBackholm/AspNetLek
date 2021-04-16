@@ -22,7 +22,6 @@ namespace AspNetLek.Pages.Events
 
         [BindProperty]
         public Event Event { get; set; }
-        public string Message { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
@@ -41,7 +40,6 @@ namespace AspNetLek.Pages.Events
         }
         public async Task<IActionResult> OnPostAsync(int? id)
         {
-            Message = "See you at the event!";
 
             if (!ModelState.IsValid)
             {
