@@ -18,17 +18,15 @@
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Index">Home</a>
+                            <button class="nav-link text-dark" asp-area="" asp-page="/Index">Home</button>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Event">Event</a>
+                            <button class="nav-link text-dark" asp-area="" asp-page="/Event">Event</button>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/MyEvents">My Events</a>
+                            <button class="nav-link text-dark" asp-area="" asp-page="/MyEvents">My Events</button>
                         </li>
                     </ul>
-                    <button id="logInButton">Log in</button>
-                    <button id="RegistrateButton">Registrate</button>
                 </div>
             </div>
         </nav>
@@ -38,17 +36,20 @@
             @RenderBody()
         </main>
     </div>
+    <div align="center">
+        <button id="logInButton">Log in</button>
+        <button id="RegistrateButton">Registrate</button>
+    </div>
+        <footer class="border-top footer text-muted">
+            <div class="container">
+                &copy; 2021 - AspNetLek - Marcus Backholm
+            </div>
+        </footer>
 
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2021 - AspNetLek - Marcus Backholm
-        </div>
-    </footer>
+        <script src="~/lib/jquery/dist/jquery.min.js"></script>
+        <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="~/js/site.js" asp-append-version="true"></script>
 
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
-
-    @await RenderSectionAsync("Scripts", required: false)
+        @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
